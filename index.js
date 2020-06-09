@@ -4,15 +4,32 @@ import data from "./data/data.json";
 const app = express();
 const PORT = 3000;
 
+// This is a built-in middleware
 // This is for the public folder on path /
 app.use(express.static("public"));
 
 // This is for images folder on path images/
 app.use("/images", express.static("images"));
 
+// Method to use JSON in our data
+// app.use(express.json());
+
+// Method to use URLEncoded in our data
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
   // If we had MongoDB connected, get data first
   res.json(data);
+});
+
+// JSON data
+// {"hello": "JSON is cool"}
+// URLEncoded data
+// hello=URLEncoded+is+cool
+
+app.post("/newItem", (req, res) => {
+  console.log(req.body);
+  res.send(req.body);
 });
 
 // Params are passed as strings
