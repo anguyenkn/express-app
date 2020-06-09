@@ -20,6 +20,9 @@ app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 // Method to use URLEncoded in our data
 app.use(express.urlencoded({ extended: true }));
 
+// This is for proxies
+app.set("trust proxy", "loopback");
+
 app.get("/", (req, res) => {
   // If we had MongoDB connected, get data first
   res.json(data);
