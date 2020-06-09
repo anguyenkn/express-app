@@ -15,6 +15,15 @@ app.get("/", (req, res) => {
   res.json(data);
 });
 
+// Params are passed as strings
+app.get("/item/:id", (req, res) => {
+  console.log(req.params.id);
+  let user = Number(req.params.id);
+  console.log(user);
+  console.log(data[user]);
+  res.send(data[user]);
+});
+
 app.post("/newItem", (req, res) => {
   res.send(`a post request with /newItem route on port ${PORT}`);
 });
